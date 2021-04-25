@@ -1,0 +1,19 @@
+.group
+{
+	float:		left;
+	padding:	2px;
+	margin:		2px;
+	background-color:white;
+	
+	border:		solid;
+}
+
+.group.select
+{
+	background-color:red;
+}
+
+.group select
+{
+	width:		100%;
+}

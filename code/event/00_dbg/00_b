@@ -1,0 +1,4 @@
+dbgwrite("bb");
+param.val = 1;
+
+return param;

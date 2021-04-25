@@ -1,0 +1,4 @@
+dbgwrite(JSON.stringify(param));
+param.val++;
+
+return param;
