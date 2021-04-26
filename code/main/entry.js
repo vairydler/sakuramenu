@@ -1,5 +1,4 @@
 /* ストレージオブジェクトと、HTAの呼び出しエントリーを兼ねている。 */
-
 function Storage( hWnd )
 {
     if( isNaN( hWnd ) )

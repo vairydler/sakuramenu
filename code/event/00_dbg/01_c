@@ -1,5 +1,3 @@
 Editor.TraceOut(JSON.stringify(param));
 
-param.winclose = true;
-
-return param;
+window.close();

@@ -15,5 +15,4 @@ var strUrl = "https://www.google.co.jp/search?hl=ja&inlang=ja&q=" + keyword;
 var shell = new ActiveXObject("WScript.Shell");
 shell.Run(strBrowserPath + " \"" + strUrl + "\"");
 
-param.winclose = true;
-return param;
+window.close();

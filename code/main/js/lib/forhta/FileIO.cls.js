@@ -39,7 +39,7 @@ var FileIO=
 		{
 			return fso.GetParentFolderName( filepath );
 		};
-	
+
 	ret.GetSplitFolderRoute=
 		function( folderpath )
 		{
@@ -69,7 +69,7 @@ var FileIO=
 			
 			return ret;
 		};
-	
+
 	ret.CollectionToArray=
 		function( collection )
 		{
@@ -119,7 +119,7 @@ var FileIO=
 
 			return ret;
 		};
-		
+
 		ret.FileReader.
 		prototype.
 		readln=
@@ -140,7 +140,7 @@ var FileIO=
 
 			return ret;
 		};
-		
+
 		ret.FileReader.
 		prototype.
 		close=
@@ -153,7 +153,7 @@ var FileIO=
 				this.reader=null;
 			}
 		};
-	
+
 	ret.FileWriter=
 		function( filepath )
 		{
@@ -170,7 +170,7 @@ var FileIO=
 				return null;
 			}
 		};
-		
+
 		ret.FileWriter.
 		prototype.
 		write=
@@ -181,7 +181,7 @@ var FileIO=
 				this.writer.write( text );
 			}
 		};
-		
+
 		ret.FileWriter.
 		prototype.
 		writeln=
@@ -192,7 +192,7 @@ var FileIO=
 				this.writer.write( text + "\r\n" );
 			}
 		};
-		
+
 		ret.FileWriter.
 		prototype.
 		close=
@@ -204,6 +204,6 @@ var FileIO=
 				this.writer = null;
 			}
 		};
-	
+
 	return ret;
 })();

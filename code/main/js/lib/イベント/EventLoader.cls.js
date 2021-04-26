@@ -36,11 +36,8 @@ function( eventpath )
 		subfilelist.forEach(
 			function( e,i,a )
 			{
-				var reader = new FileIO.FileReader( e.Path );
-				var func = reader.read();
-
 				ret[ e.name ]      = splitter( e.name );
-				ret[ e.name ].func = new Function("param", func);
+				ret[ e.name ].path = e.Path;
 			}
 		);
 		

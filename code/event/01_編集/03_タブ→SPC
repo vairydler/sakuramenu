@@ -2,5 +2,4 @@ Editor.SelectAll();
 Editor.TABToSPACE();
 Editor.Replace("^\\s+$", "", (1<<2)|(1<<7) );
 
-param.winclose = true;
-return param;
+window.close();

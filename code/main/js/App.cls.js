@@ -12,32 +12,43 @@ App.prototype.
 init=
 function(args)
 {
-	(function(){
-		hta = (function(){
-			try
-			{
-				console.log("html");
-				return false;
-			}
-			catch( e )
-			{
-				return true;
-			}
-		});
-	})();
+    /* HTAとHTMLの隠蔽 */
+    var htaWrap=
+    function()
+    {
+        hta = (function(){
+            try
+            {
+                console.log("html");
+                return false;
+            }
+            catch( e )
+            {
+                return true;
+            }
+        })();
 
-	if( hta )
-	{
-		storage = new Storage( args[1] );
-		Editor = storage.getHost("editor");
-		storage.setHost("read",true );
-		
-		var eventpath = FileIO.GetSplitFolderRoute( args[0] );
-		eventpath = FileIO.BuildPath( eventpath.join("/"), "../event" );
-	}
+        /* 関数オーバーライド */
+        if( hta )
+        {
+            console = {};
+            console.log   = function( txt ){ Editor.TraceOut( txt ); };
+            console.table = function( map ){};
+        }
+    }();
 
-	var bgl = new BuildGL();
-	bgl.build(eventpath);
+    if( hta )
+    {
+        storage = new Storage( args[1] );
+        Editor = storage.getHost("editor");
+        storage.setHost("read",true );
+
+        var eventpath = FileIO.GetSplitFolderRoute( args[0] );
+        eventpath = FileIO.BuildPath( eventpath.join("/"), "../event" );
+    }
+
+    var bgl = new BuildGL();
+    bgl.build(eventpath);
 };
 
 App.prototype.
@@ -51,6 +62,6 @@ App.prototype.
 unload=
 function()
 {
-	Editor.ReDraw();
-	storage.setHost("end",true);
+    Editor.ReDraw();
+    storage.setHost("end",true);
 };
