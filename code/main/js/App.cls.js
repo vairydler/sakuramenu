@@ -31,9 +31,23 @@ function(args)
         /* 関数オーバーライド */
         if( hta )
         {
+            var timemap = {};
             console = {};
             console.log   = function( txt ){ Editor.TraceOut( txt ); };
             console.table = function( map ){};
+            console.time  = function( label ){
+                 if( ! timemap.hasOwnProperty( label ) )
+                 {
+                    timemap[ label ] = new Date().valueOf();
+                 }
+            };
+            console.timeEnd = function( label ){ 
+                if( timemap.hasOwnProperty( label ) )
+                {
+                    console.log( label + ":" + ( new Date().valueOf() - timemap[ label ] ) );
+                    delete timemap[label];
+                }
+            };
         }
     }();
 
