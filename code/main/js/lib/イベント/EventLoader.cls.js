@@ -7,8 +7,19 @@ EventLoader.prototype.
 load=
 function( eventpath )
 {
-    return this.variableLoad( eventpath );
+    return this.fastLoad( eventpath );
 };
+
+EventLoader.prototype.
+listUpdate=
+function( eventpath )
+{
+    var ret = this.variableLoad( eventpath );
+    var listpath = FileIO.BuildPath( eventpath, "list" );
+
+    var writer = new FileIO.FileWriter( listpath );
+    writer.write( JSON.stringify( ret, null, 4 ) );
+}
 
 EventLoader.prototype.
 variableLoad=
@@ -63,4 +74,24 @@ function( eventpath )
     var eventroot     = FileIO.GetFolder( eventpath );
     var subfolderlist = FileIO.CollectionToArray( eventroot.SubFolders );
     return subfolderSearch( subfolderlist );
+};
+
+EventLoader.prototype.
+fastLoad=
+function( eventpath )
+{
+    var ret = null;
+    var listpath = FileIO.BuildPath( eventpath, "list" );
+
+    try
+    {
+        var reader = new FileIO.FileReader( listpath, false );
+        ret = JSON.parse( reader.read() );
+    }
+    catch( e )
+    {
+        ret = this.variableLoad( eventpath );
+    }
+
+    return ret;
 };

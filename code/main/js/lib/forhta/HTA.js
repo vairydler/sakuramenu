@@ -6,7 +6,7 @@ document.addEventListener( "DOMContentLoaded",
             "focus",
             "resize",
             "move",
-            "unload",
+            "beforeunload",
             "keyup",
             "keydown",
         ];

@@ -6,6 +6,7 @@ var storage;
 var App=
 function()
 {
+    var eventpath;
 };
 
 App.prototype.
@@ -58,11 +59,11 @@ function(args)
         storage.setHost("read",true );
 
         var eventpath = FileIO.GetSplitFolderRoute( args[0] );
-        eventpath = FileIO.BuildPath( eventpath.join("/"), "../event" );
+        this.eventpath = FileIO.BuildPath( eventpath.join("/"), "../event" );
     }
 
     var bgl = new BuildGL();
-    bgl.build(eventpath);
+    bgl.build(this.eventpath);
 };
 
 App.prototype.
@@ -73,9 +74,12 @@ function(args)
 
 App.prototype.
 /* ウィンドウアンロード */
-unload=
+beforeunload=
 function()
 {
+    var evtld = new EventLoader();
+    var eventmap = evtld.listUpdate( this.eventpath );
+
     Editor.ReDraw();
     storage.setHost("end",true);
 };
