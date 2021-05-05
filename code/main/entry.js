@@ -9,7 +9,7 @@ function Storage( hWnd )
     {
         var objShell = new ActiveXObject("Shell.Application");
         var windows = objShell.Windows();
-        
+
         for( var i = 0; i < windows.count; i++ )
         {
             try
@@ -23,12 +23,12 @@ function Storage( hWnd )
             {
             }
         }
-        
+
         if( !this._ie )
         {
             throw new Error( "ie not found" );
         }
-        
+
         objShell = null;
     }
     this.id = this._ie.hWnd;
@@ -84,7 +84,7 @@ function callhta( htaparam )
         {
             WshShell.run( htacmd,3,true );
         }
-        
+
         WshShell = null;
     }
 
@@ -97,7 +97,7 @@ function callhta( htaparam )
         waitcnt++;
         if( waitcnt > 5 )
         {
-        	Editor.TraceOut("timeout");
+            Editor.TraceOut("timeout");
             break;
         }
     }
@@ -108,12 +108,12 @@ function callhta( htaparam )
 var isHTA = false;
 try
 {
-	Editor;
+    Editor;
 }
 catch( e )
 {
     /* HTAの場合は、まだEditorが使えないのでこっち */
-	isHTA = true;
+    isHTA = true;
 }
 
 if( ! isHTA )
